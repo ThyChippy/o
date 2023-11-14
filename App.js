@@ -33,7 +33,14 @@ export default function App() {
           }
           return <Ionicons name={iconName} size={size} color={color}/>
         },
-      })}>
+      })}
+      tabBarOptions={{
+        activeTintColor : '#55BCF6',
+        labelStyle:{paddingBottom:10, fontSize:10},
+        style:{padding:10, height:70},
+      }}
+      >
+        
 
         <Tab.Screen name={taskName} component={TaskScreen}/>
         <Tab.Screen name={progressName} component={ProgressScreen}/>

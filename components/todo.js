@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Platform, StyleSheet, Text, TextInput, View, KeyboardAvoidingView, TouchableOpacity, Keyboard } from 'react-native';
 import Task from './tasks';
 import Collapsible from 'react-native-collapsible';
@@ -35,9 +35,7 @@ const Todo = ({title}) => {
                 {
                 taskItems.map((item, index)=>{
                     return (
-                    <TouchableOpacity key={index} onPress={()=>completeTask(index)}>
-                    <Task key={index} text={item}/>
-                    </TouchableOpacity>
+                    <Task key={index} text={item} completeTask={() => completeTask(index)}/>
                     )
                 })
                 }
