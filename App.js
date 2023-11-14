@@ -1,20 +1,46 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
 import { Platform, StyleSheet, Text, TextInput, View, KeyboardAvoidingView, TouchableOpacity, Keyboard, ScrollView } from 'react-native';
-import Task from './components/tasks';
-import Collapsible from 'react-native-collapsible';
-import Todo from './components/todo';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import  {NavigationContainer} from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
+//Screens
+import TaskScreen from './navigation/screens/taskScreen';
+import ProgressScreen from './navigation/screens/progressScreen';
+
+//ScreenNames
+const taskName = 'Task';
+const progressName = 'Progress';
+const Tab = createBottomTabNavigator();
+
 
 export default function App() {
 
   return (
-    <View style={styles.container}>
-      <ScrollView style={styles.scrollView}>
-        <Todo title={"University Tasks"}/>
-        <Todo title={"Travel Tasks"}/>
-        <Todo title={"Shopping Tasks"}/>
-      </ScrollView>
-    </View>
+    <NavigationContainer>
+      <Tab.Navigator
+      initialRouteName={taskName}
+      screenOptions={({route}) => ({
+        tabBarIcon: ({focused, color, size}) => {
+          let iconName;
+          let rn = route.name;
+
+          if (rn === taskName) {
+            iconName = focused ? 'checkbox' : 'checkbox-outline'
+          } else if (rn === progressName) {
+            iconName = focused ? 'list' : 'list-outline'
+          }
+          return <Ionicons name={iconName} size={size} color={color}/>
+        },
+      })}>
+
+        <Tab.Screen name={taskName} component={TaskScreen}/>
+        <Tab.Screen name={progressName} component={ProgressScreen}/>
+      
+
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
 

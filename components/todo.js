@@ -90,12 +90,14 @@ const styles = StyleSheet.create({
         height: 60,
         backgroundColor: '#FFF',
         borderRadius: 60,
+        flex: 1,
         justifyItems: 'center',
         alignItems: 'center',
         borderColor: '#C0C0C0',
         borderWidth: 1,
       },
       addText: {
+        fontSize: 40,
       },
 });
 
